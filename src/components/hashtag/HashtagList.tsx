@@ -1,11 +1,20 @@
-import React from 'react';
+import HashtagItem from './HashtagItem';
 
-function HashtagList() {
+type HashtagListProps = {
+  companyList: string[];
+  handleCompanySelect: (company: string) => void;
+};
+
+function HashtagList({ companyList, handleCompanySelect }: HashtagListProps) {
   return (
     <ul className='hashtags'>
-      <li>
-        <button>#Iris</button>
-      </li>
+      {companyList.map((_company) => (
+        <HashtagItem
+          key={_company}
+          company={_company}
+          onClick={handleCompanySelect}
+        />
+      ))}
     </ul>
   );
 }
