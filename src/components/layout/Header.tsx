@@ -1,17 +1,17 @@
-import { useFeedbackItemsCtxVal } from '../../lib/hooks';
+import useFeedbackItemsStore from '../../store/feedbackItemsStore';
 import Pattern from '../Pattern';
 import Logo from '../Logo';
 import PageHeading from '../PageHeading';
 import FeedbackForm from '../feedback/FeedbackForm';
 
 function Header() {
-  const { handleAddToList } = useFeedbackItemsCtxVal();
+  const addItemToList = useFeedbackItemsStore((state) => state.addItemToList);
   return (
     <header>
       <Pattern />
       <Logo />
       <PageHeading />
-      <FeedbackForm onAddToList={handleAddToList} />
+      <FeedbackForm onAddToList={addItemToList} />
     </header>
   );
 }

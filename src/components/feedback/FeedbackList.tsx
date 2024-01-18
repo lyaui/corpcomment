@@ -1,12 +1,15 @@
-import { useFeedbackItemsCtxVal } from '../../lib/hooks';
+import useFeedbackItemsStore from '../../store/feedbackItemsStore';
 
 import Spinner from '../Spinner';
 import ErrorMessage from '../ErrorMessage';
 import FeedbackItem from './FeedbackItem';
 
 function FeedbackList() {
-  const ctx = useFeedbackItemsCtxVal();
-  const { isLoading, errorMsg, filteredFeedbackItem } = ctx;
+  const isLoading = useFeedbackItemsStore((state) => state.isLoading);
+  const errorMsg = useFeedbackItemsStore((state) => state.errorMsg);
+  const filteredFeedbackItem = useFeedbackItemsStore((state) =>
+    state.getFilteredFeedbackItem(),
+  );
 
   return (
     <ol className='feedback-list'>
