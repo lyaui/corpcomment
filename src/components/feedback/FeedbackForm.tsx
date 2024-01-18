@@ -6,8 +6,15 @@ type FeedbackFormProps = {
   onAddToList: (text: string) => void;
 };
 
+enum FormStatus {
+  INIT = 'INIT',
+  VALID = 'VALID',
+  INVALID = 'INVALID',
+}
+
 function FeedbackForm({ onAddToList }: FeedbackFormProps) {
   const [text, setText] = useState('');
+  const [formStatus, setFormStatus] = useState(FormStatus.INIT);
 
   const charCnt = MAX_CHARACTERS - text.length;
 
@@ -19,12 +26,26 @@ function FeedbackForm({ onAddToList }: FeedbackFormProps) {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onAddToList(text);
-    setText('');
+
+    if (!(text.includes('#') && text.length >= 5)) {
+      setFormStatus(FormStatus.INVALID);
+    } else {
+      setFormStatus(FormStatus.VALID);
+      onAddToList(text);
+      setText('');
+    }
+    setTimeout(() => {
+      setFormStatus(FormStatus.INIT);
+    }, 2000);
   };
 
   return (
-    <form onSubmit={handleSubmit} className='form'>
+    <form
+      onSubmit={handleSubmit}
+      className={`form ${
+        formStatus === FormStatus.VALID ? 'form--valid' : ''
+      } ${formStatus === FormStatus.INVALID ? 'form--invalid' : ''}`}
+    >
       <textarea
         value={text}
         onChange={handleChange}
