@@ -1,11 +1,11 @@
+import { useFeedbackItemsCtxVal } from '../../lib/hooks';
 import Pattern from '../Pattern';
 import Logo from '../Logo';
 import PageHeading from '../PageHeading';
 import FeedbackForm from '../feedback/FeedbackForm';
 
-type HeaderProps = { handleAddToList: (text: string) => void };
-
-function Header({ handleAddToList }: HeaderProps) {
+function Header() {
+  const { handleAddToList } = useFeedbackItemsCtxVal();
   return (
     <header>
       <Pattern />

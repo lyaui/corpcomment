@@ -1,11 +1,8 @@
+import { useFeedbackItemsCtxVal } from '../../lib/hooks';
 import HashtagItem from './HashtagItem';
 
-type HashtagListProps = {
-  companyList: string[];
-  handleCompanySelect: (company: string) => void;
-};
-
-function HashtagList({ companyList, handleCompanySelect }: HashtagListProps) {
+function HashtagList() {
+  const { companyList, handleCompanySelect } = useFeedbackItemsCtxVal();
   return (
     <ul className='hashtags'>
       {companyList.map((_company) => (

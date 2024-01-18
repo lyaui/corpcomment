@@ -1,24 +1,18 @@
-import { type TFeedbackItem } from '../../lib/types';
+import { useFeedbackItemsCtxVal } from '../../lib/hooks';
+
 import Spinner from '../Spinner';
 import ErrorMessage from '../ErrorMessage';
 import FeedbackItem from './FeedbackItem';
 
-type FeedbackListProps = {
-  isLoading: boolean;
-  errorMsg: string;
-  feedbackItems: TFeedbackItem[];
-};
+function FeedbackList() {
+  const ctx = useFeedbackItemsCtxVal();
+  const { isLoading, errorMsg, filteredFeedbackItem } = ctx;
 
-function FeedbackList({
-  isLoading,
-  errorMsg,
-  feedbackItems,
-}: FeedbackListProps) {
   return (
     <ol className='feedback-list'>
       {isLoading && <Spinner />}
       {errorMsg && <ErrorMessage message={errorMsg} />}
-      {feedbackItems.map((_item) => (
+      {filteredFeedbackItem.map((_item) => (
         <FeedbackItem key={_item.id} {..._item} />
       ))}
     </ol>
