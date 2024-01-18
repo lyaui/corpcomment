@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { TriangleUpIcon } from '@radix-ui/react-icons';
 
 import { TFeedbackItem } from '../../lib/types';
@@ -9,8 +10,12 @@ function FeedbackItem({
   text,
   daysAgo,
 }: TFeedbackItem) {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <li className='feedback'>
+    <li
+      onClick={() => setIsOpen(!isOpen)}
+      className={`feedback ${isOpen ? 'feedback--expand' : ''}`}
+    >
       <button>
         <TriangleUpIcon />
         <span>{upvoteCount}</span>

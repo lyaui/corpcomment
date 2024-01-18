@@ -9,7 +9,7 @@ function App() {
   const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  const [selectedCompany, setSelectedCompany] = useState('Netflix');
+  const [selectedCompany, setSelectedCompany] = useState('');
 
   const filteredFeedbackItem = useMemo(
     () =>
