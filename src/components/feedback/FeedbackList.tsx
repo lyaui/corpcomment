@@ -1,6 +1,6 @@
-import { type TFeedbackItem } from '../lib/types';
-import Spinner from './Spinner';
-import ErrorMessage from './ErrorMessage';
+import { type TFeedbackItem } from '../../lib/types';
+import Spinner from '../Spinner';
+import ErrorMessage from '../ErrorMessage';
 import FeedbackItem from './FeedbackItem';
 
 type FeedbackListProps = {
